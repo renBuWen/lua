@@ -164,9 +164,7 @@ static Node *mainpositionTV (const Table *t, const TValue *key) {
 ** Check whether key 'k1' is equal to the key in node 'n2'.
 ** This equality is raw, so there are no metamethods. Floats
 ** with integer values have been normalized, so integers cannot
-** be equal to floats. It is assumed that 'eqshrstr' is simply
-** pointer equality, so that short strings are handled in the
-** default case.
+** be equal to floats.
 */
 static int equalkey (const TValue *k1, const Node *n2) {
   if (rawtt(k1) != keytt(n2))  /* not the same variants? */
@@ -186,6 +184,8 @@ static int equalkey (const TValue *k1, const Node *n2) {
       return fvalue(k1) == fvalueraw(keyval(n2));
     case LUA_TLNGSTR:
       return luaS_eqlngstr(tsvalue(k1), keystrval(n2));
+    case LUA_TSHRSTR:
+      return eqshrstr(tsvalue(k1), keystrval(n2));
     default:
       return gcvalue(k1) == gcvalueraw(keyval(n2));
   }

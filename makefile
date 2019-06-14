@@ -53,9 +53,9 @@ TESTS= -DLUA_USER_H='"ltests.h"' -O0
 
 
 # enable Linux goodies
-MYCFLAGS= $(LOCAL) -std=c99 -DLUA_USE_LINUX -DLUA_USE_READLINE
-MYLDFLAGS= $(LOCAL) -Wl,-E
-MYLIBS= -ldl -lreadline
+MYCFLAGS= $(LOCAL) -std=c99 # -DLUA_USE_LINUX -DLUA_USE_READLINE
+MYLDFLAGS= # $(LOCAL) -Wl,-E
+MYLIBS= # -ldl -lreadline
 
 
 CC= gcc
