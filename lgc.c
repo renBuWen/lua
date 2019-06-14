@@ -290,11 +290,11 @@ static void reallymarkobject (global_State *g, GCObject *o) {
       }
       /* else... */
     }  /* FALLTHROUGH */
-    case LUA_TTABLE: case LUA_TPROTO:
+    case LUA_TTABLE: case LUA_TPROTO: case LUA_TLCL:
       if (isshared(o))
         return;
       /* FALLTHROUGH */
-    case LUA_TLCL: case LUA_TCCL: case LUA_TTHREAD: {
+    case LUA_TCCL: case LUA_TTHREAD: {
       linkobjgclist(o, g->gray);
       break;
     }
